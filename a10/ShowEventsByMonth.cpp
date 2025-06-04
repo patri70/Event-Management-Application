@@ -5,8 +5,8 @@
 #include <QHBoxLayout>
 #include <QMessageBox>
 
-ShowEventsByMonth::ShowEventsByMonth(Service& service, CommandManager& commandManager, QWidget* parent)
-    : QWidget(parent), service(service), commandManager(commandManager), currentIndex(0)
+ShowEventsByMonth::ShowEventsByMonth(Service& service, QWidget* parent)
+    : QWidget(parent), service(service), currentIndex(0)
 {
     setWindowTitle("Add User Event");
     auto* layout = new QVBoxLayout(this);
@@ -41,7 +41,6 @@ ShowEventsByMonth::ShowEventsByMonth(Service& service, CommandManager& commandMa
     connect(noButton, &QPushButton::clicked, this, &ShowEventsByMonth::onNoClicked);
     connect(backButton, &QPushButton::clicked, this, &ShowEventsByMonth::onBackClicked);
 
-    // Inițial, butoanele de eveniment sunt dezactivate
     yesButton->setEnabled(false);
     noButton->setEnabled(false);
 }
@@ -78,7 +77,6 @@ void ShowEventsByMonth::showCurrentEvent()
     }
     const Event& event = events[currentIndex];
     eventLabel->setText(QString::fromStdString(event.toString()));
-    // Dacă vrei să "play" link-ul, poți folosi QDesktopServices::openUrl aici
      QDesktopServices::openUrl(QUrl(QString::fromStdString(event.getLink())));
 }
 
@@ -87,9 +85,12 @@ void ShowEventsByMonth::onYesClicked()
     if (events.empty()) return;
     const Event& event = events[currentIndex];
     try {
-        // Înlocuiește serviciul direct cu commandManager
-        commandManager.executeCommand(std::make_unique<AddUserCommand>(service, event));
-        QMessageBox::information(this, "Success", "You are attending this event!");
+        if (service.addUserEvent(event)) {
+            QMessageBox::information(this, "Success", "You are attending this event!");
+        }
+        else {
+            QMessageBox::warning(this, "Error", "Could not add event to your list.");
+        }
     }
     catch (const std::exception& ex) {
         QMessageBox::warning(this, "Error", ex.what());

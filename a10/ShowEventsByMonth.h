@@ -4,7 +4,6 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QLineEdit>
-#include "Undo_Redo.h"
 #include "Service.h"
 
 class ShowEventsByMonth : public QWidget
@@ -12,7 +11,7 @@ class ShowEventsByMonth : public QWidget
     Q_OBJECT
 
 public:
-    explicit ShowEventsByMonth(Service& service, CommandManager& commandManager, QWidget* parent = nullptr);
+    explicit ShowEventsByMonth(Service& service, QWidget* parent = nullptr);
 
 private slots:
     void onSearchClicked();
@@ -24,7 +23,6 @@ private:
     void showCurrentEvent();
 
     Service& service;
-    CommandManager& commandManager;
     std::vector<Event> events;
     int currentIndex;
 

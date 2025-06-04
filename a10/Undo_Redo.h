@@ -54,26 +54,5 @@ public:
     void undo();
     void redo();
 };
-
-class AddUserCommand : public Command {
-private:
-    Event event;
-    Service& service;
-
-public:
-    AddUserCommand(Service& service, const Event& event);
-    void execute() override;
-    void undo() override;
-};
-
-class RemoveUserCommand : public Command {
-private:
-    Event removedEvent;
-    Service& service;
-
-public:
-    RemoveUserCommand(Service& service, const Event& event);
-    void execute() override;
-    void undo() override;
-};
+;
 

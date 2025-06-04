@@ -6,7 +6,6 @@
 #include <QInputDialog>
 #include "ui_GUI.h"
 #include "Service.h"
-#include "Undo_Redo.h"
 #include <QShortcut>
 #include <QMessageBox>
 #include <QFileDialog>
@@ -18,14 +17,11 @@ class UserMenu : public QWidget
 
 private:
 	Service& service;
-	CommandManager commandManager;
 	QPushButton* viewByMonthButton;
 	QPushButton* removeEventButton;
 	QPushButton* viewParticipatingEventsButton;
 	QPushButton* saveEventsButton;
-	QPushButton* displayFileEventsButton;
-	QPushButton* undoButton;
-	QPushButton* redoButton;
+	QPushButton* displayFileEventsButton;	
 	QPushButton* closeButton;
 	QLabel* label;
 
@@ -37,8 +33,7 @@ private slots:
 	void listEventsUser();
 	void saveEventsToFile();
 	void displayEventsToFile();
-	void undo();
-	void redo();
+	
 
 public:
 	explicit UserMenu(Service& service, QWidget* parent = nullptr);

@@ -1,9 +1,8 @@
-Music Festival|Live music event|https://www.coachella.com|150|2023 10 23 11 30
-Art Exhibition|Modern art display|https://www.tate.org.uk/whats-on/tate-modern/exhibition|200|2024 12 24 12 30
-Food Fair|Gourmet food tasting|https://www.smorgasburg.com|300|2023 10 25 13 30
 Tech Conference|Innovative tech talks|https://websummit.com|400|2023 11 26 14 30
 Book Launch|New book release|https://www.penguinrandomhouse.com/events|100|2024 11 27 15 30
 Film Screening|Indie film premiere|https://www.sundance.org|250|2023 10 28 16 30
 Charity Run|5K charity run|https://www.parkrun.com|500|2023 12 29 17 30
 Theater Play|Classic drama performance|https://www.nationaltheatre.org.uk|350|2023 10 30 18 30
 Science Fair|Interactive science exhibits|https://www.sciencemuseum.org.uk/see-and-do|450|2023 12 31 19 30
+Music Festival|Live music event|https://www.coachella.com|150|2023 10 23 11 30
+Art Exhibition|Modern art display|https://www.tate.org.uk/whats-on/tate-modern/exhibition|200|2024 12 24 12 30

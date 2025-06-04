@@ -24,30 +24,6 @@ void RemoveCommand::undo() {
     service.addEvent(removedEvent);
 }
 
-AddUserCommand::AddUserCommand(Service& service, const Event& event)
-    : service(service), event(event) {
-}
-
-void AddUserCommand::execute() {
-    service.addUserEvent(event);
-}
-
-void AddUserCommand::undo() {
-    service.removeUserEvent(event);
-}
-
-RemoveUserCommand::RemoveUserCommand(Service& service, const Event& event)
-    : service(service), removedEvent(event) {
-}
-
-void RemoveUserCommand::execute() {
-    service.removeUserEvent(removedEvent);
-}
-
-void RemoveUserCommand::undo() {
-    service.addUserEvent(removedEvent);
-}
-
 UpdateCommand::UpdateCommand(Service& service, const Event& oldEvent, const Event& newEvent)
     : service(service), oldEvent(oldEvent), newEvent(newEvent) {
 }

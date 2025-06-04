@@ -29,8 +29,6 @@ void UserMenu::setUserMenu()
 	saveEventsButton = new QPushButton("Save Events to File", this);
 	displayFileEventsButton = new QPushButton("Display Saved Events List", this);
 	closeButton = new QPushButton("Close", this);
-	undoButton = new QPushButton("Undo", this);
-	redoButton = new QPushButton("Redo", this);
 
 	QFont buttonFont = viewByMonthButton->font();
 	buttonFont.setBold(true);
@@ -41,8 +39,6 @@ void UserMenu::setUserMenu()
 	saveEventsButton->setFont(buttonFont);
 	displayFileEventsButton->setFont(buttonFont);
 	closeButton->setFont(buttonFont);
-	undoButton->setFont(buttonFont);
-	redoButton->setFont(buttonFont);
 
 	QSize buttonSize(400, 80);
 	viewByMonthButton->setFixedSize(buttonSize);
@@ -65,15 +61,9 @@ void UserMenu::setUserMenu()
 	layoutUser->addSpacing(30);
 	layoutUser->addStretch();
 
-	undoButton->setFixedSize(100, 30);
-	redoButton->setFixedSize(100, 30);
 	closeButton->setFixedSize(100, 30);
-	layoutUser->addWidget(undoButton, 0, Qt::AlignLeft);
-	layoutUser->addWidget(redoButton, 0, Qt::AlignRight);
 	layoutUser->addWidget(closeButton, 0, Qt::AlignHCenter);
 
-	connect(undoButton, &QPushButton::clicked, this, &UserMenu::undo);
-	connect(redoButton, &QPushButton::clicked, this, &UserMenu::redo);
 	connect(viewByMonthButton, &QPushButton::clicked, this, &UserMenu::showEventsMonth);
 	connect(removeEventButton, &QPushButton::clicked, this, &UserMenu::removeEventUser);
 	connect(viewParticipatingEventsButton, &QPushButton::clicked, this, &UserMenu::listEventsUser);
@@ -82,15 +72,11 @@ void UserMenu::setUserMenu()
 	connect(closeButton, &QPushButton::clicked, this, &QWidget::close);
 	setLayout(layoutUser);
 
-	QShortcut* undoShortcut = new QShortcut(QKeySequence("Ctrl+Z"), this);
-	QShortcut* redoShortcut = new QShortcut(QKeySequence("Ctrl+Y"), this);
-	connect(undoShortcut, &QShortcut::activated, this, &UserMenu::undo);
-	connect(redoShortcut, &QShortcut::activated, this, &UserMenu::redo);
 }
 
 void UserMenu::showEventsMonth()
 {
-	auto* showEvents = new ShowEventsByMonth(service, commandManager);
+	auto* showEvents = new ShowEventsByMonth(service);
 	showEvents->show();
 }
 
@@ -132,7 +118,7 @@ void UserMenu::removeEventUser()
 			});
 
 		if (it != userEvents.end()) {
-			commandManager.executeCommand(std::make_unique<RemoveUserCommand>(service, *it));
+			service.removeUserEvent(*it); 
 			QMessageBox::information(this, "Remove Event", "Event removed successfully.");
 		}
 		else {
@@ -272,14 +258,4 @@ void UserMenu::displayEventsToFile()
 		QMessageBox::critical(this, "Error",
 			QString("Failed to open file:\n%1").arg(e.what()));
 	}
-}
-
-void UserMenu::undo()
-{
-	commandManager.undo();
-}
-
-void UserMenu::redo()
-{
-	commandManager.redo();
 }
