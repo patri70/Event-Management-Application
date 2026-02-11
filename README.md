@@ -1,19 +1,22 @@
-# Assignment 10
+# Event Management Application
 
-## Requirements
-1. Add multiple *undo* and *redo* functionality for the `add`, `remove`, and `update` operations. Implement this functionality using inheritance and polymorphism. You will have **Undo** and **Redo** buttons on the GUI, as well as a key combination to undo and redo the operations (e.g. `Ctrl+Z`, `Ctrl+Y`).
+## Description
+This is a desktop application designed to help users manage events easily. It allows both administrators and regular users to interact with a list of events.
 
-2. Show the contents of the `adoption list` / `movie watch list` / `shopping basket` / `tutorial watch list` using a table view. You must use the [Qt View/Model](https://doc.qt.io/qt-6/modelview.html) components (`QTableView`). Create your own model – a class which inherits from [`QAbstractTableModel`](https://doc.qt.io/qt-6/qabstracttablemodel.html). This window will be opened from your GUI's main window.
+## Goal
+The goal of this project is to provide a clean and functional interface for event planning, developed as part of a 2nd-year University project.
 
-<!--
-## Bonus Possibility [0.1p]
-Add multiple *undo* and *redo* functionality for the `adoption list` / `movie watch list` / `shopping basket` / `tutorial watch list`. This will be tested through the application's GUI.
+## Features
+- **Admin Mode**: Add, delete, and update events.
+- **User Mode**: Browse events, add them to a personal list, and export the list.
+- **Undo & Redo**: Easily reverse or repeat your actions (using buttons or `Ctrl+Z` / `Ctrl+Y`).
+- **Table View**: A modern way to see all events in a clear table format.
+- **File Support**: Data is saved automatically to files (`.txt`, `.csv`, or `.html`).
 
+## How to Run
+1. Open the project in **Visual Studio**.
+2. Make sure you have the **Qt framework** installed and configured.
+3. Build and run the `a10.sln` solution.
 
-## Bonus Possibility [0.1p]
-Use [custom Qt delegates](https://doc.qt.io/qt-6/qtwidgets-itemviews-stardelegate-example.html). In one of the columns of the Qt table view that shows the elements of the `adoption list` / **etc...**, display an image of the dog, trench coat or a play button that plays the movie trailer or the tutorial - depending on the problem statement. See the example images below.
-
-![image](https://user-images.githubusercontent.com/25611695/119180503-0bfef700-ba79-11eb-86ae-3a42d41bb437.png)
-![image](https://user-images.githubusercontent.com/25611695/119180582-2507a800-ba79-11eb-921c-22f64a05522b.png)
-
--->
+## Repository
+You can find the source code here: [GitHub Repo](https://github.com/patri70/Event-Management-Application.git)
